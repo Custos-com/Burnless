@@ -1,0 +1,44 @@
+# Binaries
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary
+*.test
+
+# Go build cache
+/vendor/
+
+# Output of go coverage
+*.out
+coverage.html
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor directories
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Environment files
+.env
+.env.local
+*.env
+
+# Burnless local config
+.burnless/cache/
+.burnless/state/
+
+# Build output
+dist/
+
+# GoReleaser
+dist/

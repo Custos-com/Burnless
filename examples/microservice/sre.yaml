@@ -1,0 +1,52 @@
+# Example: Internal microservice
+service: auth-service
+team: identity-team
+
+slos:
+  - name: availability
+    target: 99.95%
+    window: 30d
+    indicator:
+      metric: grpc_server_handled_total
+      good_filter: 'grpc_code="OK"'
+
+  - name: latency_p99
+    target: 99.9%
+    threshold_ms: 50
+
+error_budget:
+  burn_rate_alerts:
+    - severity: critical
+      rate: 14.4x
+      window: 1h
+      remediate: rollback-deploy
+    - severity: warning
+      rate: 6x
+      window: 6h
+      remediate: scale-up
+
+runbooks:
+  rollback-deploy:
+    mode: auto
+    steps:
+      - kubectl rollout undo deploy/auth-service
+      - wait 30s
+      - assert slo.availability > 99.9%
+  scale-up:
+    mode: auto
+    steps:
+      - kubectl scale deploy/auth-service --replicas=+2
+
+oncall:
+  provider: pagerduty
+  escalation_minutes: 5
+  notify_slack: "#identity-incidents"
+
+dashboards:
+  provider: grafana
+  auto_generate: true
+  panels:
+    - error_budget_remaining
+    - burn_rate_1h
+    - grpc_success_rate
+    - latency_p99

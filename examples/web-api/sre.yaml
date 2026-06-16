@@ -1,0 +1,54 @@
+# Example: Web API service
+# Copy this file into your repo and adjust targets for your service.
+service: payments-api
+team: platform-engineering
+
+slos:
+  - name: availability
+    target: 99.9%
+    window: 30d
+    indicator:
+      metric: http_requests_total
+      good_filter: 'status!~"5.."'
+
+  - name: latency_p99
+    target: 99.5%
+    threshold_ms: 200
+
+error_budget:
+  burn_rate_alerts:
+    - severity: critical
+      rate: 14.4x
+      window: 1h
+      remediate: scale-up
+    - severity: warning
+      rate: 6x
+      window: 6h
+      remediate: restart-pods
+
+runbooks:
+  scale-up:
+    mode: auto
+    steps:
+      - kubectl scale deploy/payments-api --replicas=+2
+      - wait 60s
+      - assert slo.availability > 99.5%
+  restart-pods:
+    mode: semi-auto
+    steps:
+      - kubectl rollout restart deploy/payments-api
+
+oncall:
+  provider: pagerduty
+  escalation_minutes: 10
+  notify_slack: "#sre-incidents"
+
+dashboards:
+  provider: grafana
+  auto_generate: true
+  panels:
+    - error_budget_remaining
+    - burn_rate_1h
+    - burn_rate_6h
+    - request_success_rate
+    - latency_p99

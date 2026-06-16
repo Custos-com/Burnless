@@ -1,0 +1,47 @@
+# Example: Data pipeline service
+service: etl-pipeline
+team: data-engineering
+
+slos:
+  - name: pipeline_success_rate
+    target: 99.0%
+    window: 7d
+    indicator:
+      metric: pipeline_runs_total
+      good_filter: 'status="success"'
+
+error_budget:
+  burn_rate_alerts:
+    - severity: critical
+      rate: 14.4x
+      window: 1h
+      remediate: retry-failed-runs
+    - severity: warning
+      rate: 6x
+      window: 6h
+      remediate: alert-on-call
+
+runbooks:
+  retry-failed-runs:
+    mode: semi-auto
+    steps:
+      - kubectl exec -it deploy/etl-pipeline -- ./retry-failed.sh
+      - wait 120s
+      - assert slo.pipeline_success_rate > 98.5%
+  alert-on-call:
+    mode: auto
+    steps:
+      - notify pagerduty severity=warning
+
+oncall:
+  provider: pagerduty
+  escalation_minutes: 20
+  notify_slack: "#data-alerts"
+
+dashboards:
+  provider: grafana
+  auto_generate: true
+  panels:
+    - error_budget_remaining
+    - pipeline_success_rate
+    - burn_rate_6h

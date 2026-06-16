@@ -1,0 +1,46 @@
+name: Bug report
+description: Something is broken
+labels: ["bug", "needs triage"]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Burnless version
+      placeholder: "burnless version"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: "macOS 14.5 / Ubuntu 24.04 / etc"
+    validations:
+      required: true
+
+  - type: textarea
+    id: sre_yaml
+    attributes:
+      label: sre.yaml (redact any secrets)
+      render: yaml
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true

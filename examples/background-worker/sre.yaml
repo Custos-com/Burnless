@@ -1,0 +1,52 @@
+# Example: Background worker / queue consumer
+service: invoice-worker
+team: payments-team
+
+slos:
+  - name: job_success_rate
+    target: 99.5%
+    window: 30d
+    indicator:
+      metric: invoice_jobs_total
+      good_filter: 'status="success"'
+
+  - name: job_duration_p95
+    target: 99.0%
+    threshold_ms: 5000
+
+error_budget:
+  burn_rate_alerts:
+    - severity: critical
+      rate: 14.4x
+      window: 1h
+      remediate: scale-workers
+    - severity: warning
+      rate: 6x
+      window: 6h
+      remediate: restart-worker
+
+runbooks:
+  scale-workers:
+    mode: auto
+    steps:
+      - kubectl scale deploy/invoice-worker --replicas=+3
+      - wait 90s
+      - assert slo.job_success_rate > 99.0%
+  restart-worker:
+    mode: semi-auto
+    steps:
+      - kubectl rollout restart deploy/invoice-worker
+
+oncall:
+  provider: pagerduty
+  escalation_minutes: 15
+  notify_slack: "#payments-alerts"
+
+dashboards:
+  provider: grafana
+  auto_generate: true
+  panels:
+    - error_budget_remaining
+    - burn_rate_1h
+    - job_success_rate
+    - queue_depth
