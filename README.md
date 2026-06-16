@@ -1,7 +1,6 @@
 <div align="center">
 
-# Burnless
-
+<br/>
 **Stop burning your error budget. Stop burning out your team.**
 
 Full SRE config as code — SLOs, error budgets, runbooks, on-call, and dashboards in one repo.
