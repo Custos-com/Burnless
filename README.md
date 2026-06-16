@@ -14,8 +14,8 @@
 Full SRE config as code — SLOs, error budgets, runbooks, on-call, and dashboards in one repo.
 Auto-remediates before alerts even fire.
 
-[![CI](https://img.shields.io/github/actions/workflow/status/Custos-com/Burnless/ci.yml?label=CI&style=flat-square)](https://github.com/Custos-com/Burnless/actions)
-[![Release](https://img.shields.io/github/v/release/Custos-com/Burnless?style=flat-square)](https://github.com/Custos-com/Burnless/releases)
+[![CI](https://img.shields.io/github/actions/workflow/status/Kairos-Labs/Burnless/ci.yml?label=CI&style=flat-square)](https://github.com/Kairos-Labs/Burnless/actions)
+[![Release](https://img.shields.io/github/v/release/Kairos-Labs/Burnless?style=flat-square)](https://github.com/Kairos-Labs/Burnless/releases)
 [![Go Version](https://img.shields.io/badge/go-1.24-00ADD8?style=flat-square&logo=go)](https://go.dev)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue?style=flat-square)](LICENSE)
 [![Discord](https://img.shields.io/badge/Discord-community-5865F2?style=flat-square&logo=discord)](https://discord.gg/burnless)

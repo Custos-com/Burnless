@@ -1,7 +1,7 @@
 # Governance
 
 ## Maintainers
-- [@Custos-com](https://github.com/Custos-com) — founder & lead maintainer
+- [@Kairos-Labs](https://github.com/Kairos-Labs) — founder & lead maintainer
 
 ## How decisions are made
 - Bug fixes and docs: merge after 1 review
