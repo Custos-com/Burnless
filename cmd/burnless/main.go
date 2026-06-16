@@ -1,17 +1,17 @@
 package main
 
 import (
+	"fmt"
 	"os"
-
-	"github.com/burnless/burnless/internal/cli"
 )
 
-// version is set by GoReleaser at build time via ldflags.
 var version = "dev"
 
 func main() {
-	cli.SetVersion(version)
-	if err := cli.NewRootCmd().Execute(); err != nil {
-		os.Exit(1)
+	if len(os.Args) > 1 && os.Args[1] == "version" {
+		fmt.Println("burnless", version)
+		return
 	}
+	fmt.Println("burnless — SRE config as code")
+	fmt.Println("Run 'burnless --help' for usage")
 }
