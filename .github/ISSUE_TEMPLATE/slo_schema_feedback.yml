@@ -1,0 +1,24 @@
+name: SLO Schema Feedback
+description: Feedback on the sre.yaml schema design
+labels: ["schema", "feedback"]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Burnless Version
+      placeholder: e.g. v0.1.0
+    validations:
+      required: true
+  - type: textarea
+    id: snippet
+    attributes:
+      label: Your sre.yaml snippet
+      render: yaml
+    validations:
+      required: true
+  - type: textarea
+    id: feedback
+    attributes:
+      label: What feels wrong or missing?
+    validations:
+      required: true
