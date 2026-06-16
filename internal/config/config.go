@@ -29,13 +29,13 @@ func Load(path string) (*SREConfig, error) {
 
 // SREConfig is the top-level structure of sre.yaml.
 type SREConfig struct {
-	Service     string        `yaml:"service"`
-	Team        string        `yaml:"team"`
-	SLOs        []SLO         `yaml:"slos"`
-	ErrorBudget ErrorBudget   `yaml:"error_budget"`
+	Service     string             `yaml:"service"`
+	Team        string             `yaml:"team"`
+	SLOs        []SLO              `yaml:"slos"`
+	ErrorBudget ErrorBudget        `yaml:"error_budget"`
 	Runbooks    map[string]Runbook `yaml:"runbooks"`
-	OnCall      OnCallConfig  `yaml:"oncall"`
-	Dashboards  DashboardConfig `yaml:"dashboards"`
+	OnCall      OnCallConfig       `yaml:"oncall"`
+	Dashboards  DashboardConfig    `yaml:"dashboards"`
 }
 
 // SLO defines a Service Level Objective.
@@ -60,10 +60,10 @@ type ErrorBudget struct {
 
 // BurnRateAlert defines a burn rate threshold and remediation action.
 type BurnRateAlert struct {
-	Severity   string  `yaml:"severity"`
-	Rate       float64 `yaml:"rate"`
-	Window     string  `yaml:"window"`
-	Remediate  string  `yaml:"remediate"`
+	Severity  string  `yaml:"severity"`
+	Rate      float64 `yaml:"rate"`
+	Window    string  `yaml:"window"`
+	Remediate string  `yaml:"remediate"`
 }
 
 // Runbook defines an executable set of remediation steps.
@@ -74,9 +74,9 @@ type Runbook struct {
 
 // OnCallConfig defines on-call routing.
 type OnCallConfig struct {
-	Provider           string `yaml:"provider"`
-	EscalationMinutes  int    `yaml:"escalation_minutes"`
-	NotifySlack        string `yaml:"notify_slack"`
+	Provider          string `yaml:"provider"`
+	EscalationMinutes int    `yaml:"escalation_minutes"`
+	NotifySlack       string `yaml:"notify_slack"`
 }
 
 // DashboardConfig defines dashboard generation settings.

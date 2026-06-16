@@ -5,10 +5,10 @@ import "context"
 
 // Notification is a message to send to a notification target.
 type Notification struct {
-	Title   string
-	Body    string
-	Service string
-	SLO     string
+	Title    string
+	Body     string
+	Service  string
+	SLO      string
 	Severity string // critical | warning | info
 }
 

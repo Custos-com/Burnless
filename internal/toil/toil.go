@@ -19,21 +19,21 @@ type Event struct {
 
 // Report is a monthly summary of toil events.
 type Report struct {
-	Month              string
-	TotalHours         float64
-	EstimatedCostUSD   float64
-	ToilPercentage     float64
-	LinkedIncidents    int
-	TotalIncidents     int
-	TopToilTasks       []TaskSummary
+	Month            string
+	TotalHours       float64
+	EstimatedCostUSD float64
+	ToilPercentage   float64
+	LinkedIncidents  int
+	TotalIncidents   int
+	TopToilTasks     []TaskSummary
 }
 
 // TaskSummary summarises toil by task type.
 type TaskSummary struct {
-	Task         string
-	TotalHours   float64
-	Automatable  bool
-	Priority     string // HIGH | MED | LOW
+	Task        string
+	TotalHours  float64
+	Automatable bool
+	Priority    string // HIGH | MED | LOW
 }
 
 // Log stores a toil event.
