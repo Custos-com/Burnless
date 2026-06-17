@@ -120,6 +120,8 @@ dashboards:
 - [sre.yaml reference](docs/reference/sre-yaml.md)
 - [CLI reference](docs/reference/cli.md)
 - [Integrations](docs/integrations.md)
+- [Security & Data Handling](docs/security.md)
+- [Data Flow Diagram](docs/data-flow.html)
 - [Contributing](CONTRIBUTING.md)
 
 ## Community

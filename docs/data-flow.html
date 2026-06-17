@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Burnless Data Flow</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #0f1117; color: #cdd6f4; margin: 0; padding: 2rem; }
+    h1 { text-align: center; color: #cba6f7; margin-bottom: 2rem; }
+    svg { width: 100%; max-width: 700px; display: block; margin: 0 auto; }
+    .box { fill: #1e1e2e; stroke: #45475a; stroke-width: 1; }
+    .box-purple { fill: #2d1f4e; stroke: #cba6f7; }
+    .box-teal { fill: #1a2e2e; stroke: #94e2d5; }
+    .box-coral { fill: #2e1a1a; stroke: #f38ba8; }
+    .box-amber { fill: #2e2a1a; stroke: #f9e2af; }
+    .label { fill: #cdd6f4; font-size: 14px; font-weight: 600; text-anchor: middle; }
+    .sublabel { fill: #a6adc8; font-size: 11px; text-anchor: middle; }
+    .arrow { stroke: #585b70; stroke-width: 2; fill: none; marker-end: url(#arr); }
+    .note { fill: #a6adc8; font-size: 11px; text-anchor: middle; }
+  </style>
+</head>
+<body>
+<h1>Burnless — Data Flow</h1>
+<svg viewBox="0 0 680 600">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#585b70" stroke-width="1.5" stroke-linecap="round"/>
+    </marker>
+  </defs>
+
+  <!-- Your Service -->
+  <rect x="220" y="20" width="240" height="55" rx="8" class="box"/>
+  <text x="340" y="44" class="label">Your Service</text>
+  <text x="340" y="62" class="sublabel">payments-api, web app, etc.</text>
+  <line x1="340" y1="75" x2="340" y2="110" class="arrow"/>
+  <text x="370" y="96" class="note">emits metrics</text>
+
+  <!-- Prometheus -->
+  <rect x="200" y="110" width="280" height="55" rx="8" class="box-coral"/>
+  <text x="340" y="134" class="label">Prometheus</text>
+  <text x="340" y="152" class="sublabel">Scrapes and stores metrics every 15s</text>
+  <line x1="340" y1="165" x2="340" y2="200" class="arrow"/>
+  <text x="390" y="186" class="note">queries every 60s</text>
+
+  <!-- sre.yaml -->
+  <rect x="30" y="200" width="140" height="55" rx="8" class="box-amber"/>
+  <text x="100" y="224" class="label">sre.yaml</text>
+  <text x="100" y="242" class="sublabel">Your rules in Git</text>
+  <line x1="170" y1="227" x2="198" y2="227" class="arrow"/>
+
+  <!-- Burnless Agent -->
+  <rect x="170" y="200" width="340" height="70" rx="8" class="box-purple"/>
+  <text x="340" y="228" class="label">Burnless Agent</text>
+  <text x="340" y="248" class="sublabel">Calculates burn rate · Checks thresholds</text>
+  <text x="340" y="264" class="sublabel">Reads sre.yaml · Queries Prometheus</text>
+
+  <!-- Three arrows down -->
+  <line x1="220" y1="270" x2="140" y2="350" class="arrow"/>
+  <line x1="340" y1="270" x2="340" y2="350" class="arrow"/>
+  <line x1="460" y1="270" x2="540" y2="350" class="arrow"/>
+  <text x="140" y="324" class="note">burn rate high</text>
+  <text x="340" y="324" class="note">always</text>
+  <text x="540" y="324" class="note">if critical</text>
+
+  <!-- Runbook -->
+  <rect x="50" y="350" width="180" height="55" rx="8" class="box-teal"/>
+  <text x="140" y="374" class="label">Auto Runbook</text>
+  <text x="140" y="392" class="sublabel">Scale pods · Restart service</text>
+
+  <!-- Slack -->
+  <rect x="250" y="350" width="180" height="55" rx="8" class="box-teal"/>
+  <text x="340" y="374" class="label">Slack</text>
+  <text x="340" y="392" class="sublabel">Status notification</text>
+
+  <!-- PagerDuty -->
+  <rect x="450" y="350" width="180" height="55" rx="8" class="box-coral"/>
+  <text x="540" y="374" class="label">PagerDuty</text>
+  <text x="540" y="392" class="sublabel">Pages on-call engineer</text>
+
+  <!-- Event log -->
+  <rect x="200" y="440" width="280" height="55" rx="8" class="box-amber"/>
+  <text x="340" y="464" class="label">Event Log</text>
+  <text x="340" y="482" class="sublabel">What happened · When · Who was notified</text>
+  <line x1="340" y1="405" x2="340" y2="440" class="arrow"/>
+
+  <!-- Bottom note -->
+  <text x="340" y="532" class="note">Problem auto-fixed before engineer is woken up</text>
+  <text x="340" y="552" class="note">All rules live in sre.yaml in Git — versioned, reviewable, auditable</text>
+  <text x="340" y="572" class="note">Business data (customers, payments) is never touched by Burnless</text>
+</svg>
+</body>
+</html>
