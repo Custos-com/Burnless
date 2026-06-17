@@ -116,10 +116,10 @@ dashboards:
 
 ## Documentation
 
-- [Getting started](https://docs.burnless.dev/getting-started)
-- [sre.yaml reference](https://docs.burnless.dev/reference/sre-yaml)
-- [CLI reference](https://docs.burnless.dev/reference/cli)
-- [Integrations](https://docs.burnless.dev/integrations)
+- [Getting started](docs/getting-started.md)
+- [sre.yaml reference](docs/reference/sre-yaml.md)
+- [CLI reference](docs/reference/cli.md)
+- [Integrations](docs/integrations.md)
 - [Contributing](CONTRIBUTING.md)
 
 ## Community
