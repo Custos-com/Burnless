@@ -133,3 +133,18 @@ dashboards:
 ## License
 
 Apache 2.0 — see [LICENSE](LICENSE).
+
+## License
+
+Burnless uses a three-tier license strategy:
+
+| Layer | Files | License |
+|-------|-------|---------|
+| SDK & Schema | `pkg/` `schema/` `examples/` | Apache 2.0 — maximum ecosystem reach |
+| Core CLI & Agent | `cmd/` `internal/` `deploy/` | AGPLv3 — free forever including SSO |
+| SaaS Dashboard | `saas/` `dashboard/` | BSL 1.1 — free for dev, paid for production SaaS |
+
+**TL;DR:** If you're an SRE engineer using the CLI or self-hosting the agent — it's free, forever.
+If you want to offer a managed Burnless service — [contact us](mailto:licensing@burnless.dev).
+
+See [licenses/](licenses/) for full license texts.
