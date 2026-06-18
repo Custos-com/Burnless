@@ -1,0 +1,46 @@
+GNU AFFERO GENERAL PUBLIC LICENSE
+Version 3, 19 November 2007
+
+Copyright (C) 2026 Custos-com (Burnless Authors)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU Affero General Public License for more details.
+
+ADDITIONAL TERMS — NETWORK USE
+
+If you modify this Program, or any covered work, by linking or combining
+it with other code, and convey the resulting work, the terms of this
+License will apply to the whole of the combination.
+
+If you run a modified version of the Program on a server and let other
+users communicate with it, you must make the complete source code of
+your modified version available to those users, under the terms of this
+License.
+
+WHAT THIS MEANS FOR BURNLESS USERS
+
+- SRE engineers using the Burnless CLI at work: FREE, no restrictions.
+- Teams self-hosting the Burnless agent and K8s operator: FREE.
+- SSO, RBAC, all CLI features: FREE forever.
+- Companies offering a hosted/managed Burnless service with modifications:
+  must release their source code under AGPLv3.
+- Companies embedding Burnless in a proprietary commercial product for
+  distribution: contact licensing@burnless.dev for a commercial licence.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+Full licence text: https://www.gnu.org/licenses/agpl-3.0.txt
+
+APPLIES TO:
+  cmd/
+  internal/
+  deploy/
+  .github/workflows/
