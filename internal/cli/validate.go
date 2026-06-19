@@ -10,11 +10,11 @@ import (
 // NewValidateCmd creates the "burnless validate" command.
 func NewValidateCmd() *cobra.Command {
 	return &cobra.Command{
-		Use:           "validate <file>",
-		Short:         "Validate an sre.yaml file",
-		Args:          cobra.ExactArgs(1),
-		SilenceUsage:  true,
-		RunE:          runValidate,
+		Use:          "validate <file>",
+		Short:        "Validate an sre.yaml file",
+		Args:         cobra.ExactArgs(1),
+		SilenceUsage: true,
+		RunE:         runValidate,
 	}
 }
 
