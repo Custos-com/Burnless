@@ -1,0 +1,78 @@
+<svg width="100%" viewBox="0 0 680 580" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, sans-serif" font-size="13">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#888" stroke-width="1.5" stroke-linecap="round"/>
+    </marker>
+  </defs>
+
+  <!-- Layer 1 -->
+  <rect x="40" y="30" width="600" height="130" rx="14" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.5"/>
+  <text x="340" y="56" text-anchor="middle" font-weight="500" font-size="14" fill="#26215C">Layer 1 — Engineer tools</text>
+  <text x="340" y="74" text-anchor="middle" font-size="12" fill="#534AB7">What engineers install and run</text>
+  <rect x="60" y="90" width="130" height="50" rx="8" fill="#CECBF6" stroke="#AFA9EC" stroke-width="0.5"/>
+  <text x="125" y="112" text-anchor="middle" font-weight="500" fill="#26215C">burnless CLI</text>
+  <text x="125" y="128" text-anchor="middle" font-size="11" fill="#534AB7">init, validate, status</text>
+  <rect x="210" y="90" width="130" height="50" rx="8" fill="#CECBF6" stroke="#AFA9EC" stroke-width="0.5"/>
+  <text x="275" y="112" text-anchor="middle" font-weight="500" fill="#26215C">agent daemon</text>
+  <text x="275" y="128" text-anchor="middle" font-size="11" fill="#534AB7">polls every 60s</text>
+  <rect x="360" y="90" width="130" height="50" rx="8" fill="#CECBF6" stroke="#AFA9EC" stroke-width="0.5"/>
+  <text x="425" y="112" text-anchor="middle" font-weight="500" fill="#26215C">K8s operator</text>
+  <text x="425" y="128" text-anchor="middle" font-size="11" fill="#534AB7">CRD reconciler</text>
+  <rect x="510" y="90" width="110" height="50" rx="8" fill="#CECBF6" stroke="#AFA9EC" stroke-width="0.5"/>
+  <text x="565" y="112" text-anchor="middle" font-weight="500" fill="#26215C">GitHub Action</text>
+  <text x="565" y="128" text-anchor="middle" font-size="11" fill="#534AB7">CI/CD validate</text>
+
+  <!-- sre.yaml -->
+  <rect x="270" y="190" width="140" height="44" rx="8" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0.5"/>
+  <text x="340" y="212" text-anchor="middle" font-weight="500" fill="#2C2C2A">sre.yaml (Git)</text>
+  <text x="340" y="175" text-anchor="middle" font-size="11" fill="#888">reads config from</text>
+  <line x1="340" y1="160" x2="340" y2="188" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="340" y1="234" x2="340" y2="258" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="380" y="249" text-anchor="middle" font-size="11" fill="#888">calls</text>
+
+  <!-- Layer 2 -->
+  <rect x="40" y="260" width="600" height="130" rx="14" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+  <text x="340" y="286" text-anchor="middle" font-weight="500" font-size="14" fill="#04342C">Layer 2 — Core platform</text>
+  <text x="340" y="304" text-anchor="middle" font-size="12" fill="#0F6E56">internal/ packages — all business logic lives here</text>
+  <rect x="55" y="318" width="88" height="50" rx="8" fill="#9FE1CB" stroke="#5DCAA5" stroke-width="0.5"/>
+  <text x="99" y="340" text-anchor="middle" font-weight="500" fill="#04342C">config</text>
+  <text x="99" y="356" text-anchor="middle" font-size="11" fill="#0F6E56">parse sre.yaml</text>
+  <rect x="153" y="318" width="88" height="50" rx="8" fill="#9FE1CB" stroke="#5DCAA5" stroke-width="0.5"/>
+  <text x="197" y="340" text-anchor="middle" font-weight="500" fill="#04342C">slo ✅</text>
+  <text x="197" y="356" text-anchor="middle" font-size="11" fill="#0F6E56">burn rate math</text>
+  <rect x="251" y="318" width="88" height="50" rx="8" fill="#9FE1CB" stroke="#5DCAA5" stroke-width="0.5"/>
+  <text x="295" y="340" text-anchor="middle" font-weight="500" fill="#04342C">toil</text>
+  <text x="295" y="356" text-anchor="middle" font-size="11" fill="#0F6E56">event tracker</text>
+  <rect x="349" y="318" width="88" height="50" rx="8" fill="#9FE1CB" stroke="#5DCAA5" stroke-width="0.5"/>
+  <text x="393" y="340" text-anchor="middle" font-weight="500" fill="#04342C">runbook</text>
+  <text x="393" y="356" text-anchor="middle" font-size="11" fill="#0F6E56">execute steps</text>
+  <rect x="447" y="318" width="88" height="50" rx="8" fill="#9FE1CB" stroke="#5DCAA5" stroke-width="0.5"/>
+  <text x="491" y="340" text-anchor="middle" font-weight="500" fill="#04342C">metrics</text>
+  <text x="491" y="356" text-anchor="middle" font-size="11" fill="#0F6E56">source interface</text>
+  <rect x="545" y="318" width="88" height="50" rx="8" fill="#9FE1CB" stroke="#5DCAA5" stroke-width="0.5"/>
+  <text x="589" y="340" text-anchor="middle" font-weight="500" fill="#04342C">notify</text>
+  <text x="589" y="356" text-anchor="middle" font-size="11" fill="#0F6E56">Slack, PagerDuty</text>
+
+  <line x1="340" y1="392" x2="340" y2="416" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="380" y="407" text-anchor="middle" font-size="11" fill="#888">calls</text>
+
+  <!-- Layer 3 -->
+  <rect x="40" y="418" width="600" height="130" rx="14" fill="#FAEEDA" stroke="#EF9F27" stroke-width="0.5"/>
+  <text x="340" y="444" text-anchor="middle" font-weight="500" font-size="14" fill="#412402">Layer 3 — External integrations</text>
+  <text x="340" y="462" text-anchor="middle" font-size="12" fill="#854F0B">all behind Go interfaces — swap backends without touching core logic</text>
+  <rect x="58" y="476" width="104" height="50" rx="8" fill="#FAC775" stroke="#EF9F27" stroke-width="0.5"/>
+  <text x="110" y="498" text-anchor="middle" font-weight="500" fill="#412402">Prometheus</text>
+  <text x="110" y="514" text-anchor="middle" font-size="11" fill="#854F0B">metrics source</text>
+  <rect x="172" y="476" width="104" height="50" rx="8" fill="#FAC775" stroke="#EF9F27" stroke-width="0.5"/>
+  <text x="224" y="498" text-anchor="middle" font-weight="500" fill="#412402">Grafana</text>
+  <text x="224" y="514" text-anchor="middle" font-size="11" fill="#854F0B">dashboards</text>
+  <rect x="286" y="476" width="104" height="50" rx="8" fill="#FAC775" stroke="#EF9F27" stroke-width="0.5"/>
+  <text x="338" y="498" text-anchor="middle" font-weight="500" fill="#412402">Slack</text>
+  <text x="338" y="514" text-anchor="middle" font-size="11" fill="#854F0B">notifications</text>
+  <rect x="400" y="476" width="104" height="50" rx="8" fill="#FAC775" stroke="#EF9F27" stroke-width="0.5"/>
+  <text x="452" y="498" text-anchor="middle" font-weight="500" fill="#412402">PagerDuty</text>
+  <text x="452" y="514" text-anchor="middle" font-size="11" fill="#854F0B">on-call routing</text>
+  <rect x="514" y="476" width="110" height="50" rx="8" fill="#FAC775" stroke="#EF9F27" stroke-width="0.5"/>
+  <text x="569" y="498" text-anchor="middle" font-weight="500" fill="#412402">Kubernetes</text>
+  <text x="569" y="514" text-anchor="middle" font-size="11" fill="#854F0B">CRD + Helm</text>
+</svg>
