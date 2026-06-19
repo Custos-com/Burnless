@@ -27,7 +27,6 @@ func runInit(cmd *cobra.Command, args []string) error {
 
 	cfg := config.GenerateDefault(serviceName, team)
 
-	// validate before writing — fail fast if something is wrong
 	if err := cfg.Validate(); err != nil {
 		return fmt.Errorf("generated config is invalid: %w", err)
 	}
@@ -40,7 +39,6 @@ func runInit(cmd *cobra.Command, args []string) error {
 	return nil
 }
 
-// prompt prints a question and reads a single line of user input.
 func prompt(reader *bufio.Reader, question string) string {
 	fmt.Printf("? %s: ", question)
 	answer, _ := reader.ReadString('\n')
