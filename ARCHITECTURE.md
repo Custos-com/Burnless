@@ -2,6 +2,9 @@
 
 ## Overview
 
+![Burnless Architecture](docs/architecture.svg)
+
+
 Burnless is structured in three layers:
 +---------------------------+
 
