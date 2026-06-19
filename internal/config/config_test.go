@@ -153,6 +153,40 @@ func TestValidateRejectsInvalidSLOTargets(t *testing.T) {
 	}
 }
 
+func TestLoadAcceptsHumanReadableFormats(t *testing.T) {
+	path := writeSREConfig(t, `
+service: checkout-api
+slos:
+  - name: availability
+    target: 99.5%
+    window: 30d
+error_budget:
+  burn_rate_alerts:
+    - severity: critical
+      rate: 14.4x
+      window: 1h
+      remediate: scale-up
+    - severity: warning
+      rate: 6x
+      window: 6h
+      remediate: restart-pods
+`)
+
+	cfg, err := Load(path)
+	if err != nil {
+		t.Fatalf("Load() returned unexpected error: %v", err)
+	}
+	if cfg.SLOs[0].Target != 99.5 {
+		t.Fatalf("target = %v, want 99.5", cfg.SLOs[0].Target)
+	}
+	if cfg.ErrorBudget.BurnRateAlerts[0].Rate != 14.4 {
+		t.Fatalf("critical rate = %v, want 14.4", cfg.ErrorBudget.BurnRateAlerts[0].Rate)
+	}
+	if cfg.ErrorBudget.BurnRateAlerts[1].Rate != 6 {
+		t.Fatalf("warning rate = %v, want 6", cfg.ErrorBudget.BurnRateAlerts[1].Rate)
+	}
+}
+
 func TestValidateAllowsBoundarySLOTargets(t *testing.T) {
 	cfg := SREConfig{
 		Service: "checkout-api",
