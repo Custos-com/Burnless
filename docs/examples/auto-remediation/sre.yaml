@@ -1,0 +1,45 @@
+# Example: Full auto-remediation workflow
+# Shows all runbook modes and safety controls
+
+service: checkout-api
+team: commerce-platform
+
+slos:
+  - name: availability
+    target: 99.95
+    window: 30d
+
+error_budget:
+  burn_rate_alerts:
+    # Critical: auto-remediate immediately
+    - rate: 14.4
+      severity: critical
+      remediate: emergency-scale
+      notify:
+        slack: "#p1-incidents"
+        pagerduty: commerce-routing-key
+
+    # Warning: post to Slack for human approval
+    - rate: 6.0
+      severity: warning
+      remediate: scale-up
+      notify:
+        slack: "#sre-warnings"
+
+runbooks:
+  # Auto mode: executes immediately, no approval needed
+  emergency-scale:
+    mode: auto
+    steps:
+      - kubectl scale deploy/checkout-api --replicas=10 -n production
+      - wait: 120s
+      - assert: availability > 99.95
+
+  # Semi-auto mode: posts to Slack, waits for approval
+  scale-up:
+    mode: semi-auto
+    notify_channel: "#sre-approvals"
+    steps:
+      - kubectl scale deploy/checkout-api --replicas=+2 -n production
+      - wait: 60s
+      - assert: availability > 99.9

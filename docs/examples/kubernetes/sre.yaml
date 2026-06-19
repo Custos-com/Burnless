@@ -1,0 +1,55 @@
+# Example: Kubernetes web service SLO
+service: payments-api
+team: platform-engineering
+
+slos:
+  - name: availability
+    target: 99.9
+    window: 30d
+    indicator:
+      metric: http_requests_total
+      good_filter: 'status!~"5.."'
+
+  - name: latency
+    target: 99.0
+    window: 30d
+    indicator:
+      metric: http_request_duration_seconds
+      good_filter: 'le="0.5"'
+
+error_budget:
+  burn_rate_alerts:
+    - rate: 14.4
+      severity: critical
+      window: 1h
+      remediate: scale-up
+      notify:
+        slack: "#sre-incidents"
+        pagerduty: your-routing-key
+    - rate: 6.0
+      severity: warning
+      window: 6h
+      notify:
+        slack: "#sre-warnings"
+
+runbooks:
+  scale-up:
+    mode: semi-auto
+    steps:
+      - kubectl scale deploy/payments-api --replicas=+2 -n production
+      - wait: 60s
+      - assert: availability > 99.9
+
+oncall:
+  provider: pagerduty
+  escalation_minutes: 10
+  notify_slack: "#sre-incidents"
+
+dashboards:
+  provider: grafana
+  auto_generate: true
+  panels:
+    - error_budget_remaining
+    - burn_rate
+    - request_rate
+    - latency_p99

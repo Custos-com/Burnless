@@ -7,14 +7,14 @@ import "time"
 
 // Event represents a single logged toil event.
 type Event struct {
-	ID           string    `yaml:"id"`
-	Service      string    `yaml:"service"`
-	Task         string    `yaml:"task"`
-	Date         time.Time `yaml:"date"`
-	DurationMins int       `yaml:"duration_minutes"`
-	Trigger      string    `yaml:"trigger"`
-	Automatable  bool      `yaml:"automatable"`
-	Notes        string    `yaml:"notes,omitempty"`
+	ID           string    `yaml:"id"            json:"id"`
+	Service      string    `yaml:"service"       json:"service"`
+	Task         string    `yaml:"task"          json:"task"`
+	Date         time.Time `yaml:"date"          json:"date"`
+	DurationMins int       `yaml:"duration_minutes" json:"duration_minutes"`
+	Trigger      string    `yaml:"trigger"       json:"trigger"`
+	Automatable  bool      `yaml:"automatable"   json:"automatable"`
+	Notes        string    `yaml:"notes,omitempty" json:"notes,omitempty"`
 }
 
 // Report is a monthly summary of toil events.
@@ -34,17 +34,4 @@ type TaskSummary struct {
 	TotalHours  float64
 	Automatable bool
 	Priority    string // HIGH | MED | LOW
-}
-
-// Log stores a toil event.
-func Log(event Event) error {
-	// TODO: persist to bbolt local store
-	return nil
-}
-
-// GenerateReport produces a monthly toil report.
-func GenerateReport(month string) (*Report, error) {
-	// TODO: query bbolt, aggregate by task, compute cost
-	// Assume average SRE salary $180k/year = $86.54/hr
-	return &Report{Month: month}, nil
 }

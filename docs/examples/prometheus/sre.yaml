@@ -1,0 +1,27 @@
+# Example: Prometheus-only setup (no Kubernetes)
+service: data-pipeline
+team: data-engineering
+
+slos:
+  - name: throughput
+    target: 99.5
+    window: 7d
+    indicator:
+      metric: pipeline_jobs_total
+      good_filter: 'status="success"'
+
+error_budget:
+  burn_rate_alerts:
+    - rate: 14.4
+      severity: critical
+      remediate: restart-pipeline
+      notify:
+        slack: "#data-incidents"
+
+runbooks:
+  restart-pipeline:
+    mode: auto
+    steps:
+      - systemctl restart data-pipeline
+      - wait: 30s
+      - assert: throughput > 99.5

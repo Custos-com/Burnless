@@ -1,0 +1,24 @@
+# Example: AWS-based service (coming in v0.2.0)
+# Datadog and CloudWatch support planned
+
+service: user-service
+team: platform
+
+slos:
+  - name: availability
+    target: 99.9
+    window: 30d
+
+# AWS integration coming in v0.2.0
+# error_budget:
+#   metrics_source: cloudwatch
+#   burn_rate_alerts:
+#     - rate: 14.4
+#       remediate: restart-ecs-task
+
+runbooks:
+  restart-ecs-task:
+    mode: semi-auto
+    steps:
+      - aws ecs update-service --cluster prod --service user-service --force-new-deployment
+      - wait: 120s
