@@ -3,15 +3,32 @@ package main
 import (
 	"fmt"
 	"os"
+
+	"github.com/burnless/burnless/internal/cli"
+	"github.com/spf13/cobra"
 )
 
 var version = "dev"
 
 func main() {
-	if len(os.Args) > 1 && os.Args[1] == "version" {
-		fmt.Println("burnless", version)
-		return
+	rootCmd := &cobra.Command{
+		Use:   "burnless",
+		Short: "Stop burning your error budget. Stop burning out your team.",
 	}
-	fmt.Println("burnless — SRE config as code")
-	fmt.Println("Run 'burnless --help' for usage")
+
+	versionCmd := &cobra.Command{
+		Use:   "version",
+		Short: "Print the burnless version",
+		Run: func(cmd *cobra.Command, args []string) {
+			fmt.Println("burnless", version)
+		},
+	}
+
+	rootCmd.AddCommand(versionCmd)
+	rootCmd.AddCommand(cli.NewInitCmd())
+	rootCmd.AddCommand(cli.NewValidateCmd())
+
+	if err := rootCmd.Execute(); err != nil {
+		os.Exit(1)
+	}
 }
