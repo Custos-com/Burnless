@@ -3,8 +3,9 @@ package cli
 import (
 	"fmt"
 
-	"github.com/burnless/burnless/internal/config"
 	"github.com/spf13/cobra"
+
+	"github.com/burnless/burnless/internal/config"
 )
 
 // NewValidateCmd creates the "burnless validate" command.

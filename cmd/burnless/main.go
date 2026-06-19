@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/burnless/burnless/internal/cli"
 	"github.com/spf13/cobra"
+
+	"github.com/burnless/burnless/internal/cli"
 )
 
 var version = "dev"

@@ -6,8 +6,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/burnless/burnless/internal/config"
 	"github.com/spf13/cobra"
+
+	"github.com/burnless/burnless/internal/config"
 )
 
 // NewInitCmd creates the "burnless init" command.
