@@ -16,6 +16,7 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 - `burnless validate` command
 - Prometheus alerting rule generation
 - Toil Tracker CLI (`burnless toil log`, `burnless toil report`)
+- Toil cost calculation (`toil.CostModel`) — converts toil time to a dollar estimate using a configurable SRE salary benchmark (default $180k/yr ≈ $86.54/hr)
 
 ---
 
