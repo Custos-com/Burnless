@@ -17,6 +17,7 @@ func NewToilCmd() *cobra.Command {
 	}
 
 	toilCmd.AddCommand(newToilLogCmd())
+	toilCmd.AddCommand(newToilReportCmd())
 
 	return toilCmd
 }
