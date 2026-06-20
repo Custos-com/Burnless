@@ -28,6 +28,7 @@ func main() {
 	rootCmd.AddCommand(versionCmd)
 	rootCmd.AddCommand(cli.NewInitCmd())
 	rootCmd.AddCommand(cli.NewValidateCmd())
+	rootCmd.AddCommand(cli.NewToilCmd())
 
 	if err := rootCmd.Execute(); err != nil {
 		os.Exit(1)
