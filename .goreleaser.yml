@@ -1,6 +1,14 @@
+# .goreleaser.yml — Burnless release configuration
+# https://goreleaser.com/customization/
+
 version: 2
 
 project_name: burnless
+
+before:
+  hooks:
+    - go mod tidy
+    - go generate ./...
 
 builds:
   - id: burnless
@@ -15,27 +23,65 @@ builds:
     goarch:
       - amd64
       - arm64
+    ignore:
+      - goos: windows
+        goarch: arm64
     ldflags:
-      - -s -w -X main.version={{.Version}}
+      - -s -w
+      - -X main.version={{.Version}}
 
 archives:
-  - formats:
-      - tar.gz
-    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+  - id: burnless
+    name_template: >-
+      {{ .ProjectName }}_{{ .Os }}_{{ .Arch }}
     format_overrides:
       - goos: windows
-        formats:
-          - zip
+        formats: ['zip']
+    files:
+      - README.md
+      - LICENSE
+      - licenses/*
+
+checksum:
+  name_template: checksums.txt
+  algorithm: sha256
 
 changelog:
   sort: asc
+  use: github
   filters:
     exclude:
       - "^docs:"
       - "^test:"
       - "^chore:"
+      - Merge pull request
+      - Merge branch
+  groups:
+    - title: "New features"
+      regexp: "^feat"
+      order: 0
+    - title: "Bug fixes"
+      regexp: "^fix"
+      order: 1
+    - title: "Other"
+      order: 999
 
 release:
   github:
     owner: Custos-com
     name: Burnless
+  name_template: "Burnless {{.Version}}"
+  footer: |
+    ## Install
+
+    macOS / Linux (one-liner):
+      curl -fsSL https://raw.githubusercontent.com/Custos-com/Burnless/main/scripts/install.sh | sh
+
+    Go install:
+      go install github.com/Custos-com/Burnless/cmd/burnless@{{.Tag}}
+
+    Verify:
+      burnless version
+
+    ---
+    Built with love for SRE teams who deserve to sleep through the night.
