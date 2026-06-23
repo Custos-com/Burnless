@@ -85,3 +85,17 @@ release:
 
     ---
     Built with love for SRE teams who deserve to sleep through the night.
+
+homebrew_casks:
+  - name: burnless
+    repository:
+      owner: Custos-com
+      name: homebrew-tap
+      token: "{{ .Env.GITHUB_TOKEN }}"
+    commit_author:
+      name: goreleaserbot
+      email: bot@goreleaser.com
+    commit_msg_template: "chore: update burnless to {{.Tag}}"
+    homepage: "https://github.com/Custos-com/Burnless"
+    description: "Stop burning your error budget. Stop burning out your team. SRE config as code."
+    license: "AGPL-3.0"
