@@ -35,6 +35,48 @@ None of it is versioned. None of it is reviewable. None of it executes itself at
 
 ---
 
+## Installation
+
+### macOS — Homebrew (recommended)
+
+```bash
+brew install --cask Custos-com/tap/burnless
+```
+
+### macOS + Linux — one-liner
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Custos-com/Burnless/main/scripts/install.sh | sh
+```
+
+### Go developers
+
+```bash
+go install github.com/Custos-com/Burnless/cmd/burnless@latest
+```
+
+### Download binary directly
+
+Download the latest binary for your platform from
+[GitHub Releases](https://github.com/Custos-com/Burnless/releases/latest).
+
+| Platform | File |
+|---|---|
+| macOS Apple Silicon | `burnless_darwin_arm64.tar.gz` |
+| macOS Intel | `burnless_darwin_amd64.tar.gz` |
+| Linux amd64 | `burnless_linux_amd64.tar.gz` |
+| Linux arm64 | `burnless_linux_arm64.tar.gz` |
+| Windows | `burnless_windows_amd64.zip` |
+
+### Verify installation
+
+```bash
+burnless version
+# burnless 0.2.0
+```
+
+---
+
 ## Quick start
 
 ```bash
