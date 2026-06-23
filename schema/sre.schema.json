@@ -1,10 +1,13 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://burnless.dev/schema/sre.schema.json",
+  "$id": "https://raw.githubusercontent.com/Custos-com/Burnless/main/schema/sre.schema.json",
   "title": "Burnless sre.yaml schema",
   "description": "Schema for the Burnless sre.yaml SRE configuration file",
   "type": "object",
-  "required": ["service", "slos"],
+  "required": [
+    "service",
+    "slos"
+  ],
   "properties": {
     "service": {
       "type": "string",
@@ -20,19 +23,43 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["name", "target", "window"],
+        "required": [
+          "name",
+          "target",
+          "window"
+        ],
         "properties": {
-          "name":   { "type": "string" },
-          "target": { "type": "number", "minimum": 0, "maximum": 100 },
-          "window": { "type": "string", "enum": ["7d", "30d", "90d"] },
+          "name": {
+            "type": "string"
+          },
+          "target": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "window": {
+            "type": "string",
+            "enum": [
+              "7d",
+              "30d",
+              "90d"
+            ]
+          },
           "indicator": {
             "type": "object",
             "properties": {
-              "metric":      { "type": "string" },
-              "good_filter": { "type": "string" }
+              "metric": {
+                "type": "string"
+              },
+              "good_filter": {
+                "type": "string"
+              }
             }
           },
-          "threshold_ms": { "type": "integer", "minimum": 0 }
+          "threshold_ms": {
+            "type": "integer",
+            "minimum": 0
+          }
         }
       }
     },
@@ -43,12 +70,30 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["severity", "rate", "window"],
+            "required": [
+              "severity",
+              "rate",
+              "window"
+            ],
             "properties": {
-              "severity":  { "type": "string", "enum": ["critical", "warning", "info"] },
-              "rate":      { "type": "number", "minimum": 1 },
-              "window":    { "type": "string" },
-              "remediate": { "type": "string" }
+              "severity": {
+                "type": "string",
+                "enum": [
+                  "critical",
+                  "warning",
+                  "info"
+                ]
+              },
+              "rate": {
+                "type": "number",
+                "minimum": 1
+              },
+              "window": {
+                "type": "string"
+              },
+              "remediate": {
+                "type": "string"
+              }
             }
           }
         }
@@ -58,27 +103,57 @@
       "type": "object",
       "additionalProperties": {
         "type": "object",
-        "required": ["mode", "steps"],
+        "required": [
+          "mode",
+          "steps"
+        ],
         "properties": {
-          "mode":  { "type": "string", "enum": ["auto", "semi-auto"] },
-          "steps": { "type": "array", "items": { "type": "string" } }
+          "mode": {
+            "type": "string",
+            "enum": [
+              "auto",
+              "semi-auto"
+            ]
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
         }
       }
     },
     "oncall": {
       "type": "object",
       "properties": {
-        "provider":            { "type": "string" },
-        "escalation_minutes":  { "type": "integer", "minimum": 1 },
-        "notify_slack":        { "type": "string" }
+        "provider": {
+          "type": "string"
+        },
+        "escalation_minutes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "notify_slack": {
+          "type": "string"
+        }
       }
     },
     "dashboards": {
       "type": "object",
       "properties": {
-        "provider":      { "type": "string" },
-        "auto_generate": { "type": "boolean" },
-        "panels":        { "type": "array", "items": { "type": "string" } }
+        "provider": {
+          "type": "string"
+        },
+        "auto_generate": {
+          "type": "boolean"
+        },
+        "panels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     }
   }
