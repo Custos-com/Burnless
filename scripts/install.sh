@@ -94,7 +94,7 @@ echo "  Installing Burnless ${LATEST} for ${OS}/${ARCH}..."
 
 # build download URL
 
-FILENAME="${BINARY}_${LATEST#v}_${OS}_${ARCH}.tar.gz"
+FILENAME="${BINARY}_${OS}_${ARCH}.tar.gz"
 
 URL="https://github.com/${REPO}/releases/download/${LATEST}/${FILENAME}"
 
