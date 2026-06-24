@@ -103,6 +103,9 @@ burnless agent start
 
 ## The sre.yaml
 
+> **VS Code tip:** Open any file named `sre.yaml` and get autocomplete automatically.
+> Schema is published on [SchemaStore.org](https://www.schemastore.org/json/).
+
 ```yaml
 service: payments-api
 team: platform-engineering
