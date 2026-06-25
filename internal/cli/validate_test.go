@@ -51,3 +51,32 @@ func TestRunValidate_MissingFile(t *testing.T) {
 		t.Fatal("expected error for missing file, got nil")
 	}
 }
+
+func TestRunValidate_DefaultFile(t *testing.T) {
+	// change to a temp dir with a valid sre.yaml
+	tmp := t.TempDir()
+	sre := `
+service: payments-api
+slos:
+  - name: availability
+    target: 99.9
+    window: 30d
+`
+	if err := os.WriteFile(filepath.Join(tmp, "sre.yaml"), []byte(sre), 0o644); err != nil {
+		t.Fatalf("failed to write sre.yaml: %v", err)
+	}
+
+	// change working directory to temp dir
+	orig, _ := os.Getwd()
+	defer func() { _ = os.Chdir(orig) }()
+	if err := os.Chdir(tmp); err != nil {
+		t.Fatalf("failed to chdir: %v", err)
+	}
+
+	// run validate with NO arguments — should find sre.yaml automatically
+	cmd := NewValidateCmd()
+	cmd.SetArgs([]string{})
+	if err := cmd.Execute(); err != nil {
+		t.Fatalf("expected no error with default sre.yaml, got: %v", err)
+	}
+}
